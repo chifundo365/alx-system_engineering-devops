@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Looop from 1 to 10, prints bad luck in 4th iteration, good luck in 8th else Best school
+counter=1
+while [[ $counter -lt  11 ]]; do
+	if [[ $counter == 4 ]]; then
+		echo "bad luck"
+	elif [[ $counter == 8 ]]; then
+		echo "good luck"
+	else
+		echo "Best School"
+	fi
+	((counter++))
+done
