@@ -3,10 +3,10 @@
 x=0
 
 while [[ $x -lt 12 ]]; do
-	echo "Hour:$x"
+	echo "Hour: $x"
 	y=1
 	while [[ $y -lt 60 ]]; do
-		echo $y
+		echo "$y"
 		((y++))
 	done
 	((x++))
