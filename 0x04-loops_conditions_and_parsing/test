@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+if [ -s "empty.txt" ]; then
+	echo "file is not empty"
+else
+	echo "file is empty"
+fi
