@@ -8,3 +8,6 @@ for file in /proc/*; do
 		echo "$basename" "bash"
 	fi
 done
+
+
+#:) it can be easily done by writting 'pgrep -l bash'
