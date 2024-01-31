@@ -11,7 +11,7 @@ trap "remove=1" SIGQUIT SIGTERM
 count=0
 while (( count < 1 )); do
 	if (( remove == 1 )); then
-		echo  "i hate the kill command"
+		echo  "I hate the kill command"
 		rm /var/run/myscript.pid
 		exit
 	fi
