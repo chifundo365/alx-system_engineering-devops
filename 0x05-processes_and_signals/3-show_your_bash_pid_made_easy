@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Dispalys the PID along with the process name of processes whose name contain the word bash
+# without using the ps command
+
+for file in /proc/*; do
+	basename=$(basename "$file")
+	if [[ "$basename" =~ ^[0-9]+$ ]] && grep -q "bash" "$file/status"; then
+		echo "$basename" "bash"
+	fi
+done
