@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Indefinetely writes 'I am alive!' to '/tmp/myprocess' file
+# in between every 'I am alive!' message the program pauses for 2 seconds
+i=0
+while (( i < 10 )); do
+echo "I am alive!" >> /tmp/myprocess
+	sleep 2
+done
