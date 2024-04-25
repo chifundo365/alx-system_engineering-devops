@@ -1,19 +1,11 @@
 #using Puppet to make changes to our configuration file.
-
-include stdlib
-
-file_line { 'SSH Private Key':
-  path               => '/etc/ssh/ssh_config',
-  line               => '    IdentityFile ~/.ssh/school',
-  match              => '^[#]+[\s]*(?i)IdentityFile[\s]+~/.ssh/id_rsa$',
-  replace            => true,
-  append_on_no_match => true
+file { '/home/your_username/.ssh/config':
+  ensure  => file,
+  content => "Host remote_server\n\
+    HostName 34.224.16.226\n\
+    User ubuntu\n\
+    IdentityFile ~/.ssh/school\n\
+    PasswordAuthentication no\n",
+  mode    => '0600',
 }
 
-file_line { 'Deny Password Auth':
-  path               => '/etc/ssh/ssh_config',
-  line               => '    PasswordAuthentication no',
-  match              => '^[#]+[\s]*(?i)PasswordAuthentication[\s]+(yes|no)$',
-  replace            => true,
-  append_on_no_match => true
-}
