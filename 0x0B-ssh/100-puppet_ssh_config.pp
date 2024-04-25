@@ -1,5 +1,7 @@
-# configures ss configuration file
-file { '~/.ssh/config':
+file { '/root/.ssh/config':
   ensure  => file,
-  content => 'Host remote_server\n\s\s\s\sHostName 34.224.16.226\n\s\s\s\s User ubuntu\n\s\s\s\sIdentityFile ~/.ssh/school',
+  content => "Host remote_server\n\
+    HostName 34.224.16.226\n\
+    User ubuntu\n\
+    IdentityFile ~/.ssh/school\n",
 }
