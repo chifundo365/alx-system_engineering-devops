@@ -1,0 +1,1 @@
+configuring nginx server and automating tasks with bash scripting
