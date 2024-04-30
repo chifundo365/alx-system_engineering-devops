@@ -3,6 +3,6 @@
 # Curl get request returns a page that contains 'hello World!'
 sudo apt-get update
 sudo apt-get install -y nginx
-sudo mkdir -p /var/www/default/html/index
-echo "Hello World!" > /var/www/default/html/index.html
+sudo mkdir -p /var/www/html
+echo "Hello world!" | sudo tee /var/www/html/index.nginx-debian.html >/dev/null
 sudo service nginx restart
