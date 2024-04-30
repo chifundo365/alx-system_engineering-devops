@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Installs nginx server and configures the sever to listen on port 80
+# Curl get request returns a page that contains 'hello World!'
+sudo su
+sudo apt-get -y nginx
+sudo echo "Hello World!" > /var/www/default/html/index.html
+sudo service nginx restart
+
