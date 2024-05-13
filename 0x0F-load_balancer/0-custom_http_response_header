@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Installs nginx server and configures the sever to listen on port 80
-# adds a custom header to the response header
+# duplicate web-01 to web-02
+# these scripts are an upgrade from the web-server scripts...
+
+# uncomment to see the script run in action
+#set -x
+
+echo -e "Updating and doing some minor checks...\n"
 
 function install() {
 	command -v "$1" &> /dev/null
