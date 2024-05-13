@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Installs nginx server and configures the sever to listen on port 80
+# adds a custom header to the response header
+
+# updating the index and installing nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# changing the content of the index html file
+sudo mkdir -p /var/www/html
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html >/dev/null
+
+# add a cutom header name
+sudo sed -i  '26c\	add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
+
+# restarting nginx
+sudo service nginx restart
