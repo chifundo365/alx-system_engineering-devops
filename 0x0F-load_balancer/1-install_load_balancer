@@ -87,6 +87,6 @@ else
 	sudo service haproxy restart
 fi
 
-echo -e "DONE!!\n"
+echo -e "DONE!..\n"
 
 
