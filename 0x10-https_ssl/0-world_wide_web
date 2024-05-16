@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Displays record_type, Address of a domain or a subdomain in a DNS SERVER
+# If domain name is given it displays the info for the following sub domains:
+# web_01, web_02, lb_01 and www
+
+function query_domain() {
+	subdomains=("www" "lb-01" "web-01" "web-02")
+	for subdomain in "${subdomains[@]}"; do
+		answer=$(dig "$subdomain.$1" | grep -A1 ';; ANSWER SECTION:')
+		ip=$( echo "$answer" | awk '{ print $5}' | grep -v '^$')
+		record=$(echo "$answer"| awk '{ print $4}' | grep -v '^$')
+		echo -e "The subdomain $subdomain is a $record record and points to $ip"
+	done
+}
+
+function query_subdomain() {
+	
+	answer=$(dig "$2.$1" | grep -A1 ';; ANSWER SECTION:')
+        ip=$( echo "$answer" | awk '{ print $5}' | grep -v '^$')
+        record=$(echo "$answer"| awk '{ print $4}' | grep -v '^$')
+        echo -e "The subdomain $2 is a $record record and points to $ip"
+}
+
+
+if [ $# -ge 2 ]; then
+	query_subdomain "$1" "$2"
+elif [ $# -eq 1 ]; then
+	query_domain "$1"
+fi
