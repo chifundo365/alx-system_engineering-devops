@@ -3,6 +3,5 @@
 
 
 if [ $# -ge 1 ]; then
-	user="$(sudo su "$1" -c 'whoami')"
-	echo "$user"
+	sudo -u "$1" whoami
 fi
