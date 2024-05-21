@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# show the current user passed as an argument to the script
+
+
+if [ $# -ge 1 ]; then
+	user="$(sudo su "$1" -c whoami)"
+	echo "$user"
+fi
