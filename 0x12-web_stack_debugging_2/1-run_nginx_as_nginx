@@ -2,9 +2,9 @@
 # ensures that nginx is running as a nginx user
 # nginx must be listening on all active ips on port 8080
 
-sudo chown -R "nginx":"nginx" /etc/nginx
-sudo chown -R "nginx":"nginx" /var/www
-sudo chown -R "nginx":"nginx" /run/nginx.pid
+sudo chown -R nginx:nginx /etc/nginx
+sudo chown -R nginx:nginx /var/www
+sudo chown -R nginx:nginx /run/nginx.pid
 
 
 sudo service nginx stop
