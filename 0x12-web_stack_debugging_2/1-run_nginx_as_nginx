@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
-# ensures that nginx is running as a nginx user
-# nginx must be listening on all active ips on port 8080
-
-sudo chown -R nginx:nginx /etc/nginx
-sudo chown -R nginx:nginx /var/www
-sudo chown -R nginx:nginx /run/nginx.pid
-
-
-sudo service nginx stop
-#sudo sed -i 1s!/.*/user nginx;/ /etc/nginx/nginx.conf
-sudo sed -i '1s|.*|user nginx;|' /etc/nginx/nginx.conf
-
-sudo -u nginx service nginx restart
+# Fixes server bug
+chmod 644 /etc/nginx/nginx.conf
+sed -Ei 's/\s*#?\s*user .*/user nginx;/' /etc/nginx/nginx.conf
+sed -Ei 's/(listen (\[::\]:)?80) /\180 /' /etc/nginx/sites-enabled/default
+pkill apache2
+# restart
+su nginx -s /bin/bash -c 'service nginx restart'
