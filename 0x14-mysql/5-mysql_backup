@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Creates a backup of all the databases in a mysql server
+
+if [ $# -eq 1 ]; then
+	sudo mysqldump --all-databases --user=root -p "$1" | sudo tee backup.sql > /dev/null
+else
+	sudo mysqldump --all-databases --user=root | sudo tee backup.sql > /dev/null
+fi
+
+# Compress backup file
+if [ -f "backup.sql" ]; then
+	date=$(date +%d-%m-%Y)
+	sudo tar -czf "${date}.tar.gz" backup.sql
+	echo "Done"
+else
+	echo "no backup file created!!"
+fi
+
