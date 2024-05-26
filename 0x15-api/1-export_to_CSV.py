@@ -19,5 +19,5 @@ if __name__ == "__main__":
                     task.get('title')])
     filename = argv[1]+".csv"
     with open(filename, "w", newline="") as file:
-        csvwriter = csv.writer(file)
+        csvwriter = csv.writer(file, quoting=csv.QUOTE_ALL)
         csvwriter.writerows(data)
