@@ -7,7 +7,7 @@ import requests
 
 def top_ten(subreddit):
     """Prints the titles of 10 hot subreddits"""
-    headers = {"User-Agent": "My-User_Agent"}
+    headers = {"User-Agent": "My-User-Agent"}
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     params = {"limit": 10}
     hot = requests.get(url, headers=headers,
