@@ -18,3 +18,6 @@ def number_of_subscribers(subreddit):
     if sub_r_subscribers.status_code >= 300:
         return 0
     return sub_r_subscribers.json().get("data").get("subscribers")
+
+
+print(number_of_subscribers("programming"))
