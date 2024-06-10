@@ -5,6 +5,19 @@ Queries the Reddit APi and processes the returned data
 import requests
 
 
+def sort_two_keywords(array, length):
+    """
+    sorts two keywords(two tuples) with the same value in a list
+    """
+    for i in range(length):
+        if i + 1 < length:
+            if array[i][1] == array[i + 1][1]:
+                if array[i][0][0] > array[i + 1][0][0]:
+                    temp = array[i]
+                    array[i] = array[i + 1]
+                    array[i + 1] = temp
+
+
 def count_words(subreddit, word_list, next=None, count={}):
     """
     prints the sum of  times the supplied keywords are found in \
@@ -40,4 +53,5 @@ def count_words(subreddit, word_list, next=None, count={}):
         return count_words(subreddit, word_list, next, count)
     results = list(sorted(list(count.items()),
                           key=lambda item: item[1], reverse=True))
+    sort_two_keywords(results, len(results))
     [print(f"{k}: {v}") for k, v in results]
