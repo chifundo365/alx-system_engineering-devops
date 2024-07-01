@@ -1,0 +1,41 @@
+server {
+                listen 80 default_server;
+                listen [::]:80 default_server;
+                root /var/www/html;
+                index index.html index.htm index.nginx-debian.html;
+                server_name _;
+                add_header X-Served-By $hostname;
+                location / {
+                        try_files $uri $uri/ =404;
+                }
+                if ($request_filename ~ redirect_me){
+                        rewrite ^ https://th3-gr00t.tk/ permanent;
+                }
+                error_page 404 /error_404.html;
+                location = /error_404.html {
+                        internal;
+                }
+
+                location /airbnb-onepage {
+                        proxy_pass http://127.0.0.1:5000;
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_set_header X-Forwarded-Proto $scheme;
+
+                        # logging for debugging
+                        access_log /var/log/nginx/airbnb-onepage_access.log;
+                        error_log /var/log/nginx/airbnb-onepage.error.log;
+
+                }
+
+		
+                location ~ ^/airbnb-dynamic/number_odd_or_even/([0-9]+)$ {
+			rewrite ^/airbnb-dynamic/number_odd_or_even/([0-9]+)$ /number_odd_or_even/$1 break;
+			proxy_pass http://127.0.0.1:5001;
+			proxy_set_header Host $host;
+			proxy_set_header X-Real-IP $remote_addr;
+			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+			proxy_set_header X-Forwarded-Proto $scheme;
+                }
+}
